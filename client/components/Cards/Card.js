@@ -1,7 +1,7 @@
 import { Pane, Text, Heading } from "evergreen-ui";
 import Link from "next/link";
 
-const BigCard = ({ attr }) => {
+const Card = ({ attr }) => {
   return (
     <Link href="/recipe/[id]" as={`recipe/${attr.id}`}>
       <a>
@@ -26,4 +26,4 @@ const BigCard = ({ attr }) => {
   );
 };
 
-export default BigCard;
+export default Card;
