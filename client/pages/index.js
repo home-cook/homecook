@@ -1,4 +1,4 @@
-import BigCards from "../components/Cards/Cards";
+import Cards from "../components/Cards/Cards";
 import Header from "../components/Header/Header";
 import Search from "../components/Search/Search";
 import { BigRecipeProvider } from "../context/BigRecipeContext";
@@ -9,7 +9,7 @@ const Home = () => {
       <BigRecipeProvider>
         <Header />
         <Search />
-        <BigCards />
+        <Cards />
       </BigRecipeProvider>
     </>
   );

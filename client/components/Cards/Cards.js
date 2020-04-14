@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { BigRecipeContext } from "../../context/BigRecipeContext";
 
-import BigCard from "./BigCard";
+import Card from "./Card";
 
 const Cards = () => {
   const [bigRecipes, setBigRecipes] = useContext(BigRecipeContext);
@@ -11,12 +11,12 @@ const Cards = () => {
       <div className="all-cards">
         <div className="big-cards">
           {bigRecipes.slice(0, 2).map((attr, ind) => {
-            return <BigCard attr={attr} key={ind} />;
+            return <Card attr={attr} key={ind} />;
           })}
         </div>
         <div className="small-cards">
           {bigRecipes.slice(2).map((attr, ind) => {
-            return <BigCard attr={attr} key={ind} />;
+            return <Card attr={attr} key={ind} />;
           })}
         </div>
       </div>
