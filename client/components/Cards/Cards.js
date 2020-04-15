@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { BigRecipeContext } from "../../context/BigRecipeContext";
+import { Pane, Text, Heading } from "evergreen-ui";
 
 import Card from "./Card";
 
@@ -9,6 +10,7 @@ const Cards = () => {
   return (
     <>
       <div className="all-cards">
+        <Heading size={800}>Featured Recipes</Heading>
         <div className="big-cards">
           {bigRecipes.slice(0, 2).map((attr, ind) => {
             return <Card attr={attr} key={ind} />;

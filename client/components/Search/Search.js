@@ -1,28 +1,45 @@
+import { useState } from "react";
 import { SearchInput, Button, Icon } from "evergreen-ui";
 
-// const searchItem = () => {
-
-// }
-
-// const submitSearch = () => {
-
-// }
-
 const Search = () => {
+  const [searchValue, setSearchValue] = useState("search things");
+  const [searchResults, setSearchResults] = useState("[]");
+
+  const updateValue = (e) => {
+    e.preventDefault();
+    setSearchValue(e.target.value);
+  };
+  console.log(searchValue, "search value");
+
+  const submitSearch = async (e) => {
+    e.preventDefault();
+    const data = await fetch(
+      `https://api.spoonacular.com/recipes/search?query=${searchValue}&number=2&apiKey=0713bac886d245648e7d89a46033da15`
+    );
+    let res = await data.json();
+    setSearchResults(res.results);
+    console.log(searchResults);
+  };
+
+  console.log(searchResults, "search results");
+
   return (
     <main>
       <ul>
         <li>
-          <div className="search-list">
-            <input
-              type="text"
-              className="search"
-              placeholder={"search recipes"}
-            />
-            <button type="submit" className="searchButton">
-              <Icon icon="search" color="muted" size="40" />
-            </button>
-          </div>
+          <form onSubmit={submitSearch}>
+            <div className="search-list">
+              <input
+                type="text"
+                className="search"
+                placeholder={searchValue}
+                onChange={updateValue}
+              />
+              <button type="submit" className="searchButton">
+                <Icon icon="search" color="muted" size="40" />
+              </button>
+            </div>
+          </form>
         </li>
         <div className="search-buttons">
           <li>
