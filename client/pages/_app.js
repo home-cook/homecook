@@ -1,4 +1,4 @@
-// pages/_app.js
+// pages / _app.js;
 import "../css/tailwind.css";
 import { BigRecipeProvider } from "../context/BigRecipeContext";
 import "../css/index.css";

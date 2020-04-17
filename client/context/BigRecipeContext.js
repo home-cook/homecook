@@ -6,7 +6,7 @@ export const BigRecipeContext = createContext();
 
 // Provider component
 
-export const BigRecipeProvider = props => {
+export const BigRecipeProvider = (props) => {
   const [bigRecipes, setBigRecipes] = useState([]);
 
   const getBigReceipes = async () => {
@@ -21,6 +21,7 @@ export const BigRecipeProvider = props => {
     getBigReceipes();
   }, []);
 
+  console.log(bigRecipes, "big recipes on context.js");
   return (
     <BigRecipeContext.Provider value={[bigRecipes, setBigRecipes]}>
       {props.children}
