@@ -1,27 +1,26 @@
 import { useState } from "react";
-import { SearchInput, Button, Icon } from "evergreen-ui";
+import { SearchInput, Button } from "evergreen-ui";
+// import Router from "next/router";
+import { useRouter } from "next/router";
 
 const Search = () => {
   const [searchValue, setSearchValue] = useState("search things");
-  const [searchResults, setSearchResults] = useState("[]");
+  const router = useRouter();
 
   const updateValue = (e) => {
     e.preventDefault();
     setSearchValue(e.target.value);
   };
-  console.log(searchValue, "search value");
 
   const submitSearch = async (e) => {
     e.preventDefault();
-    const data = await fetch(
-      `https://api.spoonacular.com/recipes/search?query=${searchValue}&number=2&apiKey=0713bac886d245648e7d89a46033da15`
-    );
-    let res = await data.json();
-    setSearchResults(res.results);
-    console.log(searchResults);
+    // const data = await fetch(
+    //   `https://api.spoonacular.com/recipes/search?query=${searchValue}&number=2&apiKey=0713bac886d245648e7d89a46033da15`
+    // );
+    // let res = await data.json();
+    // setSearchResults(res.results);
+    router.push(`/search/${searchValue}`);
   };
-
-  console.log(searchResults, "search results");
 
   return (
     <main>
@@ -36,7 +35,7 @@ const Search = () => {
                 onChange={updateValue}
               />
               <button type="submit" className="searchButton">
-                <Icon icon="search" color="muted" size="40" />
+                {/* <Icon icon="search" color="muted" size="40" /> */}
               </button>
             </div>
           </form>

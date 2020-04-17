@@ -3,14 +3,13 @@ import Header from "../../components/Header/Header";
 import { Heading } from "evergreen-ui";
 
 import { useRouter } from "next/router";
-import { BigRecipeContext } from "../../context/BigRecipeContext";
 
 const Recipe = () => {
-  const [bigRecipes, setBigRecipes] = useContext(BigRecipeContext);
   const [recipeInfo, setRecipeInfo] = useState([]);
   const [nutrition, setNutrition] = useState([]);
 
   const router = useRouter();
+  console.log(typeof router.pathname);
   const { id } = router.query;
 
   const getRecipeInfo = async () => {
@@ -39,12 +38,12 @@ const Recipe = () => {
   // get list of steps
 
   const steps = () => {
-    let stepsArr = recipeInfo.analyzedInstructions.map(i => i.steps);
-    return stepsArr[0].map(i => `Step ${i.number}: ${i.step}`);
+    let stepsArr = recipeInfo.analyzedInstructions.map((i) => i.steps);
+    return stepsArr[0].map((i) => `Step ${i.number}: ${i.step}`);
   };
 
   const getNutritionArray = () => {
-    return nutrition.slice(0, 9).map(i => {
+    return nutrition.slice(0, 9).map((i) => {
       return `${i.title}: ${i.amount}`;
     });
   };
@@ -69,7 +68,7 @@ const Recipe = () => {
               <Heading size={700}>Ingredients</Heading>
             </li>
             {recipeInfo.extendedIngredients &&
-              recipeInfo.extendedIngredients.map(i => {
+              recipeInfo.extendedIngredients.map((i) => {
                 return (
                   <>
                     <div className="ingredient-items">
@@ -85,7 +84,7 @@ const Recipe = () => {
               <Heading size={700}>Preparation</Heading>
             </li>
             {recipeInfo.extendedIngredients &&
-              steps().map(i => {
+              steps().map((i) => {
                 return <li>{i}</li>;
               })}
           </ul>
@@ -95,7 +94,7 @@ const Recipe = () => {
             <Heading size={700}>Nutrition</Heading>
           </li>
           {nutrition &&
-            getNutritionArray().map(i => {
+            getNutritionArray().map((i) => {
               return <li>{i}</li>;
             })}
         </ul>
