@@ -2,6 +2,7 @@ import { useState } from "react";
 import { SearchInput, Button } from "evergreen-ui";
 // import Router from "next/router";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const Search = () => {
   const [searchValue, setSearchValue] = useState("search things");
@@ -75,6 +76,17 @@ const Search = () => {
             >
               Top Recipes
             </Button>
+            <Link href="/add-recipe" as={`/add-recipe`}>
+              <Button
+                marginRight={16}
+                appearance="primary"
+                size="40"
+                height={40}
+                intent="none"
+              >
+                Add a recipe!
+              </Button>
+            </Link>
           </li>
         </div>
       </ul>

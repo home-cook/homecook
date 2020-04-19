@@ -1,39 +1,15 @@
 import { useContext, useState, useEffect } from "react";
 import Header from "../../components/Header/Header";
 import { Heading } from "evergreen-ui";
+import fetch from "isomorphic-unfetch";
 
 import { useRouter } from "next/router";
 
-const Recipe = () => {
-  const [recipeInfo, setRecipeInfo] = useState([]);
-  const [nutrition, setNutrition] = useState([]);
+const Recipe = ({ recipeInfo }) => {
+  const nutrition = recipeInfo.nutrition.nutrients;
 
   const router = useRouter();
-  console.log(typeof router.pathname);
   const { id } = router.query;
-
-  const getRecipeInfo = async () => {
-    const data = await fetch(
-      `https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&apiKey=0713bac886d245648e7d89a46033da15`
-    );
-    const res = await data.json();
-    setRecipeInfo(res);
-  };
-
-  // NUTRITION
-
-  const getNutrition = async () => {
-    const data = await fetch(
-      `https://api.spoonacular.com/recipes/${id}/information?includeNutrition=true&apiKey=0713bac886d245648e7d89a46033da15`
-    );
-    const res = await data.json();
-    setNutrition(res.nutrition.nutrients);
-  };
-
-  useEffect(() => {
-    getRecipeInfo();
-    getNutrition();
-  }, []);
 
   // get list of steps
 
@@ -65,7 +41,7 @@ const Recipe = () => {
         <div className="ingredient-step-section">
           <ul className="ingredients">
             <li>
-              <Heading size={700}>Ingredients</Heading>
+              <Heading size={750}>Ingredients</Heading>
             </li>
             {recipeInfo.extendedIngredients &&
               recipeInfo.extendedIngredients.map((i) => {
@@ -120,5 +96,16 @@ const Recipe = () => {
     </>
   );
 };
+
+export async function getServerSideProps(context) {
+  // Fetch data from external API
+  const res = await fetch(
+    `https://api.spoonacular.com/recipes/${context.params.id}/information?includeNutrition=true&apiKey=0713bac886d245648e7d89a46033da15`
+  );
+  const data = await res.json();
+
+  // Pass data to the page via props
+  return { props: { recipeInfo: data } };
+}
 
 export default Recipe;

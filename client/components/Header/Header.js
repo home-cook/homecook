@@ -27,6 +27,7 @@ const Header = () => {
       <style jsx>{`
         nav {
           background-color: #3DDC97;
+          padding: 1rem 5rem;
  
 
         }
@@ -34,23 +35,18 @@ const Header = () => {
             list-style-type: none;
             display: flex;
             justify-content: space-between;
-   
-    
         }
         nav ul li {
             cursor: pointer:
-            border: 2px solid blue;
         }
-        .left {
-          margin: 1rem 5rem;
-        }
+
         .right {
           display: flex;  
-          margin: 1rem 5rem;
-                }
-          .one-li {
+     
+        }
+        .one-li {
             padding-right: 3rem;
-          }
+        }
       `}</style>
     </>
   );

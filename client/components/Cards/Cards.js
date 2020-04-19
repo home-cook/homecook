@@ -5,6 +5,7 @@ import { Pane, Text, Heading } from "evergreen-ui";
 import Card from "./Card";
 
 const Cards = () => {
+  //TODO move this context to home page
   const [bigRecipes, setBigRecipes] = useContext(BigRecipeContext);
   console.log(bigRecipes, "big recipes on cards.js");
 

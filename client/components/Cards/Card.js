@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Card = ({ attr }) => {
   return (
-    <Link href="/recipe/[id]" as={`recipe/${attr.id}`}>
+    <Link href="/recipe/[id]" as={`/recipe/${attr.id}`}>
       <a>
         <Pane
           height={360}

@@ -11,10 +11,12 @@
   },
   "dependencies": {
     "evergreen-ui": "^4.24.0",
+    "isomorphic-unfetch": "^3.0.0",
     "next": "9.3.0",
     "postcss-import": "^12.0.1",
     "react": "16.13.0",
-    "react-dom": "16.13.0"
+    "react-dom": "16.13.0",
+    "react-hook-form": "^5.4.2"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
