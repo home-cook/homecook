@@ -4,9 +4,11 @@ import { BigRecipeProvider } from "../context/BigRecipeContext";
 import "../css/index.css";
 
 export default function App({ Component, pageProps }) {
+  console.log(pageProps);
   return (
-    <BigRecipeProvider>
-      <Component {...pageProps} />
-    </BigRecipeProvider>
+    //get initialprops
+    // <BigRecipeProvider>
+    <Component {...pageProps} />
+    // </BigRecipeProvider>
   );
 }

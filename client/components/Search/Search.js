@@ -76,7 +76,7 @@ const Search = () => {
             >
               Top Recipes
             </Button>
-            <Link href="/add-recipe" as={`/add-recipe`}>
+            <Link href="/addRecipe/step-1" as={`/addRecipe/step-1`}>
               <Button
                 marginRight={16}
                 appearance="primary"
