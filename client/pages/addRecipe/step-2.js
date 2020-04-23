@@ -1,33 +1,27 @@
 import Header from "../../components/Header/Header";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
 const Step2 = () => {
-  // const [tags, setTags] = useState([]);
-  // const [tagsList, setTagsList] = useState([
-  //   "healthy",
-  //   "lowcarb",
-  //   "paleo",
-  //   "low-calorie",
-  // ]);
+  const [ingredients, setIngredients] = useState([]);
+  const [query, setQuery] = useState([]);
 
-  // const selectTag = (e) => {
-  //   e.preventDefault();
-  //   if (!tags.includes(e.target.value)) {
-  //     setTags([...tags, e.target.value]);
-  //     setTagsList(tagsList.filter((i) => i !== e.target.value));
-  //   }
-  // };
+  async function getSearchResults() {
+    const res = await fetch(
+      `https://api.spoonacular.com/food/ingredients/autocomplete?query=${query}&number=5&apiKey=0713bac886d245648e7d89a46033da15`
+    );
+    const data = await res.json();
+    console.log(data);
+    setIngredients(data);
+  }
 
-  // const deleteTag = (e) => {
-  //   setTags(tags.filter((i) => i !== e.target.value));
-  //   setTagsList([...tagsList, e.target.value]);
-  // };
+  const getQuery = (e) => {
+    setQuery(e.target.value);
+    getSearchResults();
+  };
 
-  // const submit = (e) => {
-  //   e.preventDefault();
-  //   console.log(tags);
-  // };
+  console.log(ingredients, "ingredients");
+  console.log(query, "query");
 
   return (
     <>
@@ -39,6 +33,7 @@ const Step2 = () => {
             <input
               class="bg-white h-10 w-2/5 focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 appearance-none leading-normal"
               type="text"
+              onChange={getQuery}
               placeholder="search ingredients"
             />
             <input
