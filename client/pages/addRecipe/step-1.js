@@ -26,7 +26,6 @@ const AddRecipe = () => {
 
   const submit = (e) => {
     e.preventDefault();
-    console.log(tags);
   };
 
   return (
@@ -55,7 +54,11 @@ const AddRecipe = () => {
           <div className="selected-tags box h-14 border border-gray-300 rounded-lg py-4 px-8 ">
             {tags.map((i) => {
               return (
-                <button value={i} onClick={deleteTag} className="delete">
+                <button
+                  value={i}
+                  onClick={deleteTag}
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold m-8 py-2 px-4 rounded"
+                >
                   {i}
                 </button>
               );
@@ -63,14 +66,18 @@ const AddRecipe = () => {
           </div>
           <div className="tag-box box h-32 border border-gray-300 rounded-lg py-4 px-8 ">
             {tagsList.map((i) => (
-              <button value={i} onClick={selectTag} className="">
+              <button
+                value={i}
+                onClick={selectTag}
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold m-8 py-2 px-4 rounded"
+              >
                 {i}
               </button>
             ))}
           </div>
           <br></br>
           <Link href="/addRecipe/step-2" as={`/addRecipe/step-2`}>
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
               Continue
             </button>
           </Link>

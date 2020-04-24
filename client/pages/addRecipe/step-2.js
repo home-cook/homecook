@@ -4,6 +4,7 @@ import Link from "next/link";
 
 const Step2 = () => {
   const [ingredients, setIngredients] = useState([]);
+  const [selectedIngredients, setSelectedIngredients] = useState([]);
   const [query, setQuery] = useState([]);
 
   async function getSearchResults() {
@@ -20,8 +21,13 @@ const Step2 = () => {
     getSearchResults();
   };
 
-  console.log(ingredients, "ingredients");
-  console.log(query, "query");
+  const selectIngredient = (e) => {
+    e.preventDefault();
+    setSelectedIngredients([...selectedIngredients, e.target.value]);
+    setIngredients([]);
+  };
+
+  console.log(selectedIngredients, "selected ingredients");
 
   return (
     <>
@@ -45,7 +51,35 @@ const Step2 = () => {
               Add
             </button>
           </div>
-          <div className="tag-box box h-32 border border-gray-300 rounded-lg py-4 px-8 "></div>
+          <div className="tag-box box h-32 border border-gray-300 rounded-lg py-4 px-8 ">
+            {ingredients &&
+              ingredients.map((i, index) => {
+                return (
+                  <button
+                    onClick={selectIngredient}
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold m-8 py-2 px-4 rounded"
+                    key={index}
+                    value={i.name}
+                  >
+                    {i.name}
+                  </button>
+                );
+              })}
+          </div>
+          <div className="selected-tags box h-14 border border-gray-300 rounded-lg py-4 px-8 ">
+            {selectedIngredients &&
+              selectedIngredients.map((i, index) => {
+                return (
+                  <button
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold m-8 py-2 px-4 rounded"
+                    key={index}
+                    value={i.name}
+                  >
+                    {i}
+                  </button>
+                );
+              })}
+          </div>
         </div>
       </form>
     </>
