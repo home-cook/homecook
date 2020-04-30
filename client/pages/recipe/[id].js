@@ -27,12 +27,17 @@ const Recipe = ({ recipeInfo }) => {
   return (
     <>
       <Header />
-      <div className="container">
-        <Heading marginBottom={20} size={900}>
-          {recipeInfo.title}
-        </Heading>
-        <img src={`https://spoonacular.com/recipeImages/${id}-556x370.jpg`} />
-        <Heading size={600}>Author: {recipeInfo.sourceName}</Heading>
+      <div className="container mx-auto flex flex-col">
+        <div className="top-section m-auto flex flex-col items-center">
+          <h1 className="text-5xl"> {recipeInfo.title}</h1>
+
+          <img
+            className="max-w-full"
+            src={`https://spoonacular.com/recipeImages/${id}-556x370.jpg`}
+          />
+          <h1>Author: {recipeInfo.sourceName}</h1>
+        </div>
+
         <ul className="top-items">
           <li>Time to Prepare: {recipeInfo.preparationMinutes}</li>
           <li>Time to cook: {recipeInfo.cookingMinutes}</li>
@@ -41,7 +46,7 @@ const Recipe = ({ recipeInfo }) => {
         <div className="ingredient-step-section">
           <ul className="ingredients">
             <li>
-              <Heading size={750}>Ingredients</Heading>
+              <h1>Ingredients</h1>
             </li>
             {recipeInfo.extendedIngredients &&
               recipeInfo.extendedIngredients.map((i) => {
@@ -75,24 +80,6 @@ const Recipe = ({ recipeInfo }) => {
             })}
         </ul>
       </div>
-      <style jsx>{`
-        .container {
-          width: 70%;
-          display: flex;
-          flex-direction: column;
-          margin: 5em auto 5rem auto;
-        }
-        .top-items {
-          display: flex;
-          margin: 2rem;
-        }
-        .ingredient-items {
-          display: flex;
-        }
-        .ingredient-step-section {
-          display flex;
-        }
-      `}</style>
     </>
   );
 };
