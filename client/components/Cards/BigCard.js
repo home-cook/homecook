@@ -2,8 +2,6 @@ import { Pane, Text, Heading } from "evergreen-ui";
 import Link from "next/link";
 
 const BigCard = ({ attr }) => {
-  console.log({ attr });
-
   const getEnding = () => {
     return attr.image.split(".")[1];
   };
